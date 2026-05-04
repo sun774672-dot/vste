@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VŠTE Shop – Psací potřeby</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #A81F23;
+    --red-dark: #7C1518;
+    --red-light: #C4292E;
+    --white: #FFFFFF;
+    --off-white: #F7F4F2;
+    --dark: #1A1A1A;
+    --mid: #5A5A5A;
+    --light-gray: #E8E3E0;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 68px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px; text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 40px; height: 40px; position: relative;
+  }
+
+  .nav-logo-mark svg { width: 100%; height: 100%; }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .nav-brand span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+
+  .nav-cart {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--red);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: 10px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background .2s;
+  }
+  .nav-cart:hover { background: var(--red-dark); }
+
+  .cart-badge {
+    background: var(--white);
+    color: var(--red);
+    border-radius: 50%;
+    width: 18px; height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    margin-top: 68px;
+    background: var(--red);
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-circle-bg {
+    position: absolute;
+    right: -120px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    border: 160px solid rgba(255,255,255,0.06);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-circle-bg2 {
+    position: absolute;
+    right: 80px; top: 50%;
+    transform: translateY(-50%);
+    width: 380px; height: 380px;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 120px);
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    display: block;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.55em;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    max-width: 400px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--white);
+    color: var(--red);
+    text-decoration: none;
+    padding: 16px 36px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    width: fit-content;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+
+  .hero-cta svg { transition: transform .2s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    padding: 60px;
+  }
+
+  .hero-product-showcase {
+    position: relative;
+    width: 320px; height: 320px;
+  }
+
+  .hero-ring {
+    position: absolute; inset: 0;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .hero-ring-inner {
+    position: absolute; inset: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: spin-slow 12s linear infinite reverse;
+  }
+
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+  .hero-pen-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .pen-3d {
+    width: 200px;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-16px) rotate(-15deg); }
+  }
+
+  .hero-stats {
+    position: absolute; bottom: -60px; left: 0; right: 0;
+    display: flex; gap: 0;
+    background: var(--white);
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 28px 32px;
+    border-right: 1px solid var(--light-gray);
+    animation: fadeUp .6s ease both;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:nth-child(1) { animation-delay: .1s; }
+  .stat-item:nth-child(2) { animation-delay: .2s; }
+  .stat-item:nth-child(3) { animation-delay: .3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 4px;
+  }
+
+  /* ─── CATEGORIES BAR ─── */
+  .cats-bar {
+    margin-top: 80px;
+    padding: 0 48px;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .see-all {
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--red);
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 2px;
+    transition: gap .2s;
+  }
+  .see-all:hover { gap: 14px; }
+
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .cat-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+    text-decoration: none;
+    position: relative;
+    aspect-ratio: 3/2;
+    display: flex; align-items: flex-end;
+  }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+
+  .cat-card-bg {
+    position: absolute; inset: 0;
+    transition: transform .5s ease;
+  }
+  .cat-card:hover .cat-card-bg { transform: scale(1.05); }
+
+  .cat-card-bg.ballpoint { background: linear-gradient(135deg, #1A1A1A 0%, #3A3A3A 100%); }
+  .cat-card-bg.fountain  { background: linear-gradient(135deg, #2C1810 0%, #5C3320 100%); }
+  .cat-card-bg.marker    { background: linear-gradient(135deg, #0D3A4A 0%, #1A6B7A 100%); }
+  .cat-card-bg.set       { background: linear-gradient(135deg, #A81F23 0%, #C4292E 100%); }
+
+  .cat-card-deco {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 60px; height: 60px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+  }
+
+  .cat-card-content {
+    position: relative; z-index: 2;
+    padding: 24px;
+    color: var(--white);
+  }
+
+  .cat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    display: block;
+  }
+
+  .cat-count {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── FEATURED PRODUCTS ─── */
+  .products-section {
+    padding: 80px 48px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+    cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.1); }
+
+  .product-card.featured {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .product-image {
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card.featured .product-image { aspect-ratio: 3/4; }
+
+  .pi-red    { background: linear-gradient(145deg, #F7F4F2, #E8E0DC); }
+  .pi-dark   { background: linear-gradient(145deg, #1A1A1A, #2A2A2A); }
+  .pi-blue   { background: linear-gradient(145deg, #EEF2F7, #DDE6F0); }
+  .pi-green  { background: linear-gradient(145deg, #F0F4EE, #DDE8DA); }
+  .pi-gold   { background: linear-gradient(145deg, #F7F4EE, #EDE5D5); }
+
+  .product-pen-svg {
+    width: 60%;
+    filter: drop-shadow(4px 8px 16px rgba(0,0,0,0.15));
+    transform: rotate(-25deg);
+    transition: transform .3s;
+  }
+  .product-card:hover .product-pen-svg { transform: rotate(-20deg) scale(1.05); }
+
+  .product-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  .product-badge.new-badge { background: var(--dark); }
+  .product-badge.sale-badge { background: var(--red); }
+
+  .product-info { padding: 20px 24px 24px; }
+
+  .product-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .product-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--dark);
+    letter-spacing: 1px;
+  }
+
+  .product-price .old-price {
+    font-size: 16px;
+    color: var(--mid);
+    text-decoration: line-through;
+    margin-right: 8px;
+  }
+
+  .add-to-cart {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--red);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: 10px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background .2s, transform .2s;
+  }
+  .add-to-cart:hover { background: var(--red-dark); transform: scale(1.03); }
+
+  .wishlist-btn {
+    background: none; border: 1.5px solid var(--light-gray);
+    width: 38px; height: 38px; border-radius: 2px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: var(--mid);
+    transition: border-color .2s, color .2s;
+  }
+  .wishlist-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* ─── PROMO BANNER ─── */
+  .promo-section {
+    padding: 0 48px 80px;
+  }
+
+  .promo-banner {
+    background: var(--dark);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+    min-height: 280px;
+  }
+
+  .promo-left {
+    padding: 56px 64px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .promo-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 16px;
+  }
+
+  .promo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .promo-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-weight: 300;
+    max-width: 340px;
+  }
+
+  .promo-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    width: fit-content;
+    transition: background .2s;
+  }
+  .promo-cta:hover { background: var(--red-light); }
+
+  .promo-right {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .promo-circle-large {
+    position: absolute;
+    width: 400px; height: 400px;
+    border: 80px solid rgba(168, 31, 35, 0.15);
+    border-radius: 50%;
+    right: -100px;
+  }
+
+  .promo-pens {
+    position: relative; z-index: 2;
+    display: flex; gap: 16px; padding: 40px;
+  }
+
+  .promo-pen {
+    width: 12px;
+    height: 180px;
+    border-radius: 6px;
+    position: relative;
+    animation: float-alt 3s ease-in-out infinite;
+  }
+  .promo-pen:nth-child(2) { animation-delay: .5s; height: 160px; }
+  .promo-pen:nth-child(3) { animation-delay: 1s; height: 200px; }
+  .promo-pen:nth-child(4) { animation-delay: 1.5s; height: 150px; }
+  .promo-pen:nth-child(5) { animation-delay: 2s; height: 175px; }
+
+  @keyframes float-alt {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .pp1 { background: linear-gradient(180deg, #e74c3c, #c0392b); }
+  .pp2 { background: linear-gradient(180deg, #2c3e50, #34495e); }
+  .pp3 { background: linear-gradient(180deg, #3498db, #2980b9); }
+  .pp4 { background: linear-gradient(180deg, #27ae60, #229954); }
+  .pp5 { background: linear-gradient(180deg, #f39c12, #e67e22); }
+
+  /* ─── VSTĚ IDENTITY SECTION ─── */
+  .identity-section {
+    background: var(--red);
+    padding: 80px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .identity-bg-circle {
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 120px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+    right: -200px; top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .identity-content {
+    max-width: 600px;
+    position: relative; z-index: 2;
+  }
+
+  .identity-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+  }
+
+  .identity-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 5vw, 72px);
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .identity-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .identity-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .fact-item {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px;
+  }
+
+  .fact-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .fact-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  /* ─── TESTIMONIALS / INFO ─── */
+  .info-section {
+    padding: 80px 48px;
+    background: var(--white);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+
+  .info-item {
+    text-align: center;
+  }
+
+  .info-icon {
+    width: 56px; height: 56px;
+    background: var(--off-white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--red);
+  }
+
+  .info-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .info-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  /* ─── NEWSLETTER ─── */
+  .newsletter {
+    background: var(--off-white);
+    border-top: 1px solid var(--light-gray);
+    padding: 60px 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  }
+
+  .newsletter-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .newsletter-text p {
+    font-size: 14px;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  .newsletter-form {
+    display: flex; gap: 0;
+    flex: 1; max-width: 440px;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    border: 1.5px solid var(--light-gray);
+    border-right: none;
+    padding: 14px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: var(--white);
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .newsletter-input:focus { border-color: var(--red); }
+
+  .newsletter-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 0 2px 2px 0;
+    transition: background .2s;
+  }
+  .newsletter-btn:hover { background: var(--red-dark); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: var(--white);
+    padding: 64px 48px 32px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .footer-brand-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-about {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+
+  .footer-col ul li a {
+    text-decoration: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    transition: color .2s;
+    font-weight: 300;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  .footer-vste-link {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .footer-vste-link span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    transition: color .2s;
+  }
+  .footer-vste-link:hover span { color: var(--white); }
+
+  /* ─── CART TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--dark);
+    color: var(--white);
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 12px;
+    transform: translateY(80px); opacity: 0;
+    transition: all .3s ease;
+    z-index: 999;
+    border-left: 3px solid var(--red);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── SVG LOGOS ─── */
+  .vste-logo-svg {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 1024px) {
+    nav { padding: 0 24px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 40px 120px; }
+    .hero-stats { position: static; margin: 0; }
+    .cats-bar, .products-section, .promo-section, .identity-section, .info-section, .newsletter, footer { padding-left: 24px; padding-right: 24px; }
+    .cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-card.featured { grid-column: span 1; grid-row: span 1; }
+    .promo-banner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .info-grid { grid-template-columns: 1fr; gap: 32px; }
+    .newsletter { flex-direction: column; align-items: flex-start; }
+    .newsletter-form { max-width: 100%; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="17" stroke="#A81F23" stroke-width="2.5" stroke-dasharray="60 30" stroke-linecap="round"/>
+        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="12" fill="#A81F23" letter-spacing="0.5">VŠTE</text>
+      </svg>
+    </div>
+    <div class="nav-brand">
+      VŠTE Shop
+      <span>Psací potřeby</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#produkty">Produkty</a></li>
+    <li><a href="#kategorie">Kategorie</a></li>
+    <li><a href="#akce">Akce</a></li>
+    <li><a href="#o-nas">O nás</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+
+  <button class="nav-cart" onclick="showToast('Košík je prázdný.')">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Košík
+    <span class="cart-badge" id="cartCount">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-circle-bg"></div>
+  <div class="hero-circle-bg2"></div>
+
+  <div class="hero-left">
+    <p class="hero-eyebrow">VŠTE — Psací potřeby</p>
+    <h1 class="hero-title">
+      Píšeme<br>
+      <em>vaši</em>
+      budoucnost
+    </h1>
+    <p class="hero-desc">Kvalitní psací potřeby s logem VŠTE. Ideální pro studenty, akademiky i partnery kampusu. Každé pero je příběh, který teprve začíná.</p>
+    <a href="#produkty" class="hero-cta">
+      Prohlédnout kolekci
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-product-showcase">
+      <div class="hero-ring"></div>
+      <div class="hero-ring-inner"></div>
+      <div class="hero-pen-visual">
+        <!-- Stylized pen SVG -->
+        <svg class="pen-3d" viewBox="0 0 80 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="20" width="24" height="200" rx="12" fill="white"/>
+          <rect x="28" y="20" width="24" height="200" rx="12" fill="url(#penGrad)"/>
+          <rect x="30" y="22" width="8" height="196" rx="4" fill="rgba(255,255,255,0.15)"/>
+          <polygon points="28,220 52,220 40,270" fill="#C4292E"/>
+          <polygon points="38,268 42,268 40,278" fill="#888"/>
+          <rect x="26" y="16" width="28" height="12" rx="6" fill="#1A1A1A"/>
+          <rect x="30" y="14" width="20" height="6" rx="3" fill="#333"/>
+          <text x="40" y="130" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="7" fill="rgba(255,255,255,0.7)" letter-spacing="1" transform="rotate(-90 40 130)">VŠTE</text>
+          <defs>
+            <linearGradient id="penGrad" x1="28" y1="0" x2="52" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#A81F23"/>
+              <stop offset="40%" stop-color="#C4292E"/>
+              <stop offset="100%" stop-color="#7C1518"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Let tradice</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">150+</div>
+      <div class="stat-label">Produktů</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5 000+</div>
+      <div class="stat-label">Spokojených zákazníků</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="cats-bar" id="kategorie" style="padding-top: 80px;">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Procházet dle typu</p>
+      <h2 class="section-title">Kategorie</h2>
+    </div>
+    <a href="#" class="see-all">
+      Všechny produkty
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="cats-grid">
+    <a href="#" class="cat-card">
+      <div class="cat-card-bg ballpoint"></div>
+      <div class="cat-card-deco"></div>
+      <div class="cat-card-content">
+        <span class="cat-name">Kuličková pera</span>
+        <span class="cat-count">48 produktů</span>
+      </div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-card-bg fountain"></div>
+      <div class="cat-card-deco"></div>
+      <div class="cat-card-content">
+        <span class="cat-name">Plnicí pera</span>
+        <span class="cat-count">24 produktů</span>
+      </div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-card-bg marker"></div>
+      <div class="cat-card-deco"></div>
+      <div class="cat-card-content">
+        <span class="cat-name">Fixy a zvýrazňovače</span>
+        <span class="cat-count">36 produktů</span>
+      </div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-card-bg set"></div>
+      <div class="cat-card-deco"></div>
+      <div class="cat-card-content">
+        <span class="cat-name">Dárkové sady</span>
+        <span class="cat-count">18 produktů</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-section" id="produkty">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Nejprodávanější</p>
+      <h2 class="section-title">Naše produkty</h2>
+    </div>
+    <a href="#" class="see-all">
+      Zobrazit vše
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Product 1 – Featured -->
+    <div class="product-card featured">
+      <div class="product-image pi-red">
+        <span class="product-badge sale-badge">Výprodej</span>
+        <svg class="product-pen-svg" viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="24" height="170" rx="12" fill="url(#p1g)"/>
+          <rect x="20" y="12" width="8" height="166" rx="4" fill="rgba(255,255,255,0.2)"/>
+          <polygon points="18,180 42,180 30,218" fill="#7C1518"/>
+          <polygon points="28,216 32,216 30,222" fill="#aaa"/>
+          <rect x="16" y="6" width="28" height="10" rx="5" fill="#1A1A1A"/>
+          <text x="30" y="100" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="6" fill="rgba(255,255,255,0.8)" letter-spacing="1" transform="rotate(-90 30 100)">VŠTE 20 LET</text>
+          <defs><linearGradient id="p1g" x1="18" y1="0" x2="42" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#A81F23"/><stop offset="50%" stop-color="#C4292E"/><stop offset="100%" stop-color="#7C1518"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">VŠTE Edition</p>
+        <h3 class="product-name">Jubilejní pero 20 let VŠTE</h3>
+        <p class="product-desc">Limitovaná edice k 20. výročí VŠTE. Prémiové kuličkové pero s gravírováním a logem kampusu. Ideální jako dárek absolventům i partnerům školy.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="old-price">290 Kč</span>
+            199 Kč
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="wishlist-btn" onclick="showToast('Přidáno do oblíbených ♥')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <button class="add-to-cart" onclick="addToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              Do košíku
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-image pi-dark">
+        <span class="product-badge new-badge">Novinka</span>
+        <svg class="product-pen-svg" viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="24" height="170" rx="12" fill="url(#p2g)"/>
+          <rect x="20" y="12" width="8" height="166" rx="4" fill="rgba(255,255,255,0.1)"/>
+          <polygon points="18,180 42,180 30,218" fill="#555"/>
+          <rect x="16" y="6" width="28" height="10" rx="5" fill="#A81F23"/>
+          <defs><linearGradient id="p2g" x1="18" y1="0" x2="42" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#2A2A2A"/><stop offset="100%" stop-color="#444"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Campus Pro</p>
+        <h3 class="product-name">Pero Kampus Okružní – Matte Black</h3>
+        <p class="product-desc">Elegantní matné pero s červeným klipem. Symbol moderního kampusu VŠTE.</p>
+        <div class="product-footer">
+          <div class="product-price">149 Kč</div>
+          <div style="display:flex;gap:8px">
+            <button class="wishlist-btn" onclick="showToast('Přidáno do oblíbených ♥')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <button class="add-to-cart" onclick="addToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              Do košíku
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-image pi-blue">
+        <svg class="product-pen-svg" viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="24" height="170" rx="12" fill="url(#p3g)"/>
+          <polygon points="18,180 42,180 30,218" fill="#1a5276"/>
+          <rect x="16" y="6" width="28" height="10" rx="5" fill="#154360"/>
+          <defs><linearGradient id="p3g" x1="18" y1="0" x2="42" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#2471A3"/><stop offset="100%" stop-color="#5DADE2"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Student Line</p>
+        <h3 class="product-name">Pero Studenta VŠTE – Ocean Blue</h3>
+        <p class="product-desc">Lehké kuličkové pero, ideální pro každodenní studium a přednášky.</p>
+        <div class="product-footer">
+          <div class="product-price">89 Kč</div>
+          <div style="display:flex;gap:8px">
+            <button class="wishlist-btn" onclick="showToast('Přidáno do oblíbených ♥')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <button class="add-to-cart" onclick="addToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              Do košíku
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-image pi-gold">
+        <svg class="product-pen-svg" viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="24" height="170" rx="12" fill="url(#p4g)"/>
+          <polygon points="18,180 42,180 30,218" fill="#7D6608"/>
+          <rect x="16" y="6" width="28" height="10" rx="5" fill="#1A1A1A"/>
+          <defs><linearGradient id="p4g" x1="18" y1="0" x2="42" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4AC0D"/><stop offset="100%" stop-color="#F7DC6F"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Premium Edition</p>
+        <h3 class="product-name">Plnicí pero VŠTE Gold</h3>
+        <p class="product-desc">Luxusní plnicí pero se zlatými detaily. Dárek pro ty, kdo mají rádi styl.</p>
+        <div class="product-footer">
+          <div class="product-price">459 Kč</div>
+          <div style="display:flex;gap:8px">
+            <button class="wishlist-btn" onclick="showToast('Přidáno do oblíbených ♥')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <button class="add-to-cart" onclick="addToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              Do košíku
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card">
+      <div class="product-image pi-green">
+        <svg class="product-pen-svg" viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="10" width="24" height="170" rx="12" fill="url(#p5g)"/>
+          <polygon points="18,180 42,180 30,218" fill="#1D6A2A"/>
+          <rect x="16" y="6" width="28" height="10" rx="5" fill="#145A32"/>
+          <defs><linearGradient id="p5g" x1="18" y1="0" x2="42" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1E8449"/><stop offset="100%" stop-color="#52BE80"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Eco Campus</p>
+        <h3 class="product-name">Pero z recyklátu – Eco Green</h3>
+        <p class="product-desc">Udržitelné pero z recyklovaného plastu. Zodpovědný výběr pro moderní kampus.</p>
+        <div class="product-footer">
+          <div class="product-price">79 Kč</div>
+          <div style="display:flex;gap:8px">
+            <button class="wishlist-btn" onclick="showToast('Přidáno do oblíbených ♥')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <button class="add-to-cart" onclick="addToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              Do košíku
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo-section" id="akce">
+  <div class="promo-banner">
+    <div class="promo-left">
+      <p class="promo-eyebrow">Speciální nabídka</p>
+      <h2 class="promo-title">Sada pro<br>absolventy</h2>
+      <p class="promo-desc">Dárkový set 3 prémiových per s gravírováním a certifikátem VŠTE. Perfektní pro slavnostní předání diplomů nebo jako firemní dárek partnerům kampusu.</p>
+      <a href="#" class="promo-cta" onclick="addToCart(); return false;">
+        Objednat sadu — 490 Kč
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="promo-right">
+      <div class="promo-circle-large"></div>
+      <div class="promo-pens">
+        <div class="promo-pen pp1"></div>
+        <div class="promo-pen pp2"></div>
+        <div class="promo-pen pp3"></div>
+        <div class="promo-pen pp4"></div>
+        <div class="promo-pen pp5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY / ABOUT -->
+<section class="identity-section" id="o-nas">
+  <div class="identity-bg-circle"></div>
+  <div class="identity-content">
+    <p class="identity-label">O VŠTE Shop</p>
+    <h2 class="identity-title">Značka<br>s příběhem</h2>
+    <p class="identity-text">Vysoká škola technická a ekonomická v Českých Budějovicích slaví 20 let. Každé pero z naší kolekce nese novou vizuální identitu VŠTE — moderní, čistou a otevřenou novým myšlenkám, stejně jako kruh v našem logu.</p>
+    <p class="identity-text">Výnosy z prodeje podporují studentské aktivity a rozvoj kampusu Okružní.</p>
+    <div class="identity-facts">
+      <div class="fact-item">
+        <div class="fact-num">20</div>
+        <div class="fact-label">let na trhu vzdělávání</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">5 000+</div>
+        <div class="fact-label">absolventů VŠTE</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">4</div>
+        <div class="fact-label">školy na jednom kampusu</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">100%</div>
+        <div class="fact-label">výnosy zpět do školy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO / SERVICE -->
+<section class="info-section">
+  <div class="section-header" style="margin-bottom:48px;">
+    <div>
+      <p class="section-label">Proč nakupovat u nás</p>
+      <h2 class="section-title">Vaše výhody</h2>
+    </div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3 class="info-title">Doprava zdarma od 500 Kč</h3>
+      <p class="info-text">Při objednávce nad 500 Kč máte dopravu po celé ČR zdarma. Doručíme do 2 pracovních dnů.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="info-title">Originální produkty VŠTE</h3>
+      <p class="info-text">Všechna pera jsou originální merch VŠTE s certifikátem pravosti. Nová identita, nová kvalita.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <h3 class="info-title">Podpora zákazníků</h3>
+      <p class="info-text">Máte otázku? Napište nám na shop@vstecb.cz nebo zavolejte. Odpovídáme do 24 hodin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter" id="kontakt">
+  <div class="newsletter-text">
+    <h3>Zůstaňte v obraze</h3>
+    <p>Novinky, akce a exkluzivní edice přímo do vaší schránky.</p>
+  </div>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="Váš e-mail...">
+    <button class="newsletter-btn" onclick="showToast('Děkujeme za přihlášení! ✓')">Přihlásit se</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">VŠTE Shop</div>
+      <div class="footer-brand-sub">Psací potřeby & Merch</div>
+      <p class="footer-about">Oficiální obchod Vysoké školy technické a ekonomické v Českých Budějovicích. Pera, která píší příběhy nové generace.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produkty</h4>
+      <ul>
+        <li><a href="#">Kuličková pera</a></li>
+        <li><a href="#">Plnicí pera</a></li>
+        <li><a href="#">Fixy a zvýrazňovače</a></li>
+        <li><a href="#">Dárkové sady</a></li>
+        <li><a href="#">Novinky</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informace</h4>
+      <ul>
+        <li><a href="#">O nás</a></li>
+        <li><a href="#">Doručení a platba</a></li>
+        <li><a href="#">Vrácení zboží</a></li>
+        <li><a href="#">Ochrana osobních dat</a></li>
+        <li><a href="#">Obchodní podmínky</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="mailto:shop@vstecb.cz">shop@vstecb.cz</a></li>
+        <li><a href="#">+420 387 842 100</a></li>
+        <li><a href="#">Okružní 517/10</a></li>
+        <li><a href="#">370 01 České Budějovice</a></li>
+        <li><a href="https://www.vstecb.cz" target="_blank">vstecb.cz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 VŠTE Shop — Marketingové oddělení VŠTE. Všechna práva vyhrazena.</p>
+    <a href="https://www.vstecb.cz" class="footer-vste-link" target="_blank">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="17" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="50 30" stroke-linecap="round"/>
+        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" letter-spacing="0.5">VŠTE</text>
+      </svg>
+      <span>vstecb.cz</span>
+    </a>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A81F23" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg">Přidáno do košíku!</span>
+</div>
+
+<script>
+  let cartCount = 0;
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+    showToast('Produkt přidán do košíku ✓');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .cat-card, .info-item, .fact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
